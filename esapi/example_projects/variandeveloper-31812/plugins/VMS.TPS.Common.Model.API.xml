@@ -1,0 +1,2128 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VMS.TPS.Common.Model.API</name>
+    </assembly>
+    <members>
+        <member name="T:VMS.TPS.Common.Model.API.PlanSetup">
+            <summary>
+            Represents a plan setup.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.PlanningItem">
+            <summary>
+            Represents the common properties of a plan setup and a plan sum.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.ApiDataObject">
+            <summary>
+            The base class of objects in the Eclipse Scripting API.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.SerializableObject">
+            <summary>
+            Base class for objects that can be serialized.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.GetSchema">
+            <summary>
+            This member is internal to the Eclipse Scripting API.
+            </summary>
+            <returns>XmlSchema</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            This member is internal to the Eclipse Scripting API.
+            </summary>
+            <param name="reader">XmlReader</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serializes this object to the given XmlWriter.
+            </summary>
+            <param name="writer">XmlWriter where this object is serialized.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.WriteXml(System.Xml.XmlWriter,System.String,System.Object)">
+            <summary>
+            Serializes everything except IEnumerable.
+            </summary>
+            <param name="writer">XmlWriter</param>
+            <param name="name">Name.</param>
+            <param name="obj">Object.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.WriteXml(System.Xml.XmlWriter,System.String,System.String)">
+            <summary>
+            Serializes a string.
+            </summary>
+            <param name="writer">XmlWriter.</param>
+            <param name="name">Name.</param>
+            <param name="obj">String.</param>
+            <remarks>Special case, because string is IEnumerable also.</remarks>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.WriteXml``1(System.Xml.XmlWriter,System.String,System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Serializes IEnumerable.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="writer"></param>
+            <param name="name"></param>
+            <param name="obj"></param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.WriteXml``2(System.Xml.XmlWriter,System.String,System.Collections.Generic.IDictionary{``0,``1})">
+            <summary>
+            Serializes IDictionary.
+            </summary>
+            <param name="writer"></param>
+            <param name="name"></param>
+            <param name="obj"></param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.StartSerialization(System.String,System.String)">
+            <summary>
+            Must be called at the beginning of serialization
+            </summary>
+            <param name="typeName">Name of the type to serialize.</param>
+            <param name="typeId">Id of the object.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.EndSerialization">
+            <summary>
+            Must be called at the end of serialization. Clear history records and type names.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.IsTypeSerialized">
+            <summary>
+            Check if history contains information about class
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.AddTypeToHistory">
+            <summary>
+            Add history record
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.SerializableObject.ClearSerializationHistory">
+            <summary>
+            This member is internal to the Eclipse Scripting API.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.ApiDataObject.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.ApiDataObject.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support.
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.ApiDataObject.Equals(System.Object)">
+            <summary>
+            Determines whether the specified Object is equal to the current Object. 
+            </summary>
+            <param name="obj">Object to compare with the current object</param>
+            <returns>True if the specified Object is equal to the current Object; otherwise, false.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.ApiDataObject.GetHashCode">
+            <summary>
+            Serves as a hash function for this type.
+            </summary>
+            <returns>A hash code for the current Object.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.ApiDataObject.op_Equality(VMS.TPS.Common.Model.API.ApiDataObject,VMS.TPS.Common.Model.API.ApiDataObject)">
+            <summary>
+            The equality operator.
+            </summary>
+            <param name="a">First operand.</param>
+            <param name="b">Second operand.</param>
+            <returns>True if the given ApiDataObjects are the same.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.ApiDataObject.op_Inequality(VMS.TPS.Common.Model.API.ApiDataObject,VMS.TPS.Common.Model.API.ApiDataObject)">
+            <summary>
+            The inequality operator.
+            </summary>
+            <param name="a">First operand.</param>
+            <param name="b">Second operand.</param>
+            <returns>True if the given ApiDataObjects are not the same.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ApiDataObject.Id">
+            <summary>
+            The identifier of the object.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ApiDataObject.Name">
+            <summary>
+            The name of the object.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ApiDataObject.Comment">
+            <summary>
+            A comment about the object.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ApiDataObject.HistoryUserName">
+            <summary>
+            The identifier of the last user who modified this object.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ApiDataObject.HistoryDateTime">
+            <summary>
+            The date when this object was last modified.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.PlanningItem.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.PlanningItem.GetDVHCumulativeData(VMS.TPS.Common.Model.API.Structure,VMS.TPS.Common.Model.Types.DoseValuePresentation,VMS.TPS.Common.Model.Types.VolumePresentation,System.Double)">
+            <summary>
+            Returns cumulative Dose Volume Histogram (DVH) data.
+            </summary>
+            <param name="structure">Structure for which the DVH data is requested.</param>
+            <param name="dosePresentation">Requested dose presentation mode (absolute or relative). Note, that only
+            absolute dose is supported for PlanSums.</param>
+            <param name="volumePresentation">Requested volume presentation mode.</param>
+            <param name="binWidth">Requested width of the bin.</param>
+            <returns>DVHData object that contains the requested DVH information or null if DVH calculation was not possible.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanningItem.CreationDateTime">
+            <summary>
+            The date when this object was created.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanningItem.Dose">
+            <summary>
+            The total dose. The total dose is the dose of all planned fractions together.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanningItem.DoseValuePresentation">
+            <summary>
+            The presentation of the dose as absolute or relative.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.PlanSetup.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.PlanSetup.GetDoseAtVolume(VMS.TPS.Common.Model.API.Structure,System.Double,VMS.TPS.Common.Model.Types.VolumePresentation,VMS.TPS.Common.Model.Types.DoseValuePresentation)">
+            <summary>
+            Gets the dose at a volume.
+            </summary>
+            <param name="structure">Structure for which the value is requested.</param>
+            <param name="volume">Volume at which the dose is requested.</param>
+            <param name="volumePresentation">Presentation mode of the volume parameter.</param>
+            <param name="requestedDosePresentation">Requested dose presentation mode (absolute or relative).</param>
+            <returns>The dose value at the given volume of structure.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.PlanSetup.GetVolumeAtDose(VMS.TPS.Common.Model.API.Structure,VMS.TPS.Common.Model.Types.DoseValue,VMS.TPS.Common.Model.Types.VolumePresentation)">
+            <summary>
+            Gets the volume at a dose.
+            </summary>
+            <param name="structure">Structure for which the value is requested.</param>
+            <param name="dose">Dose at which the volume is requested.</param>
+            <param name="requestedVolumePresentation">Requested volume presentation mode.</param>
+            <returns>The volume at the given dose.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.UID">
+            <summary>
+            The DICOM UID of the plan.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.IsTreated">
+            <summary>
+            Checks if the treatment plan has been delivered.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.CreationUserName">
+            <summary>
+            The name of the user who saved the plan for the first time.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.PlanNormalizationMethod">
+            <summary>
+            The user interface name for the current normalization method.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.PlanNormalizationPoint">
+            <summary>
+            The plan normalization point.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.ProtocolID">
+            <summary>
+            The protocol identifier.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.ProtocolPhaseID">
+            <summary>
+            The protocol phase identifier.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.TargetVolumeID">
+            <summary>
+            The target volume identifier.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.Course">
+            <summary>
+            Used for navigating to parent course.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.Beams">
+            <summary>
+            A collection of all the beams in the plan (including setup beams).
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.StructureSet">
+            <summary>
+            The structure set.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.IsDoseValid">
+            <summary>
+            Returns the value true if the plan dose is valid. This implies that the dose object returned
+            from the dose property is not null and can therefore be used to query dose values.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.ApprovalStatus">
+            <summary>
+            The approval status.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.PlanningApprovalDate">
+            <summary>
+            The date when the plan was approved for planning.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.PlanningApprover">
+            <summary>
+            The name of the user who approved the plan for planning.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.TreatmentApprovalDate">
+            <summary>
+            The date when the plan was approved for treatment.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.TreatmentApprover">
+            <summary>
+            The name of the user who approved the plan for treatment.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.PrescribedPercentage">
+            <summary>
+            The prescribed dose percentage as a decimal number. For example, if the prescribed dose percentage shown in the Eclipse user interface is 80 %, returns 0.8
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.TotalPrescribedDose">
+            <summary>
+            The total prescribed dose.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.UniqueFractionation">
+            <summary>
+            Gets the unique fractionation. If it does not exist, an exception is thrown.
+            </summary>
+            <returns>Unique fractionation if such exists. Otherwise throws.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.PrimaryReferencePoint">
+            <summary>
+            The primary reference point.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.ElectronCalculationModel">
+            <summary>
+            The name of the electron calculation model.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.ElectronCalculationOptions">
+            <summary>
+            The electron calculation options.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.PhotonCalculationModel">
+            <summary>
+            The name of the photon calculation model.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.PhotonCalculationOptions">
+            <summary>
+            The photon calculation options.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.ProtonCalculationModel">
+            <summary>
+            The name of the proton calculation model.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.ProtonCalculationOptions">
+            <summary>
+            The proton calculation options.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSetup.TreatmentOrientation">
+            <summary>
+            The orientation of the treatment.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Patient">
+            <summary>
+            Represents a patient.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Patient.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.CreationDateTime">
+            <summary>
+            The date when this object was created.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.Id2">
+            <summary>
+            The patient ID2.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.SSN">
+            <summary>
+            The Social Security Account Number (SSN) of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.FirstName">
+            <summary>
+            The first name of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.MiddleName">
+            <summary>
+            The middle name of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.LastName">
+            <summary>
+            The last name of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.DateOfBirth">
+            <summary>
+            The date of birth of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.Sex">
+            <summary>
+            The gender of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.PrimaryOncologistId">
+            <summary>
+            The identifier of the primary oncologist.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.Hospital">
+            <summary>
+            The hospital.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.Courses">
+            <summary>
+            A collection of the patient's courses.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.Studies">
+            <summary>
+            A collection of studies.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.Registrations">
+            <summary>
+            A collection of registrations.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Patient.StructureSets">
+            <summary>
+            A collection of structure sets.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Image">
+            <summary>
+            Represents an image.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Image.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Image.GetImageProfile(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.Types.VVector,System.Double[])">
+            <summary>
+            Gets the image profile.
+            </summary>
+            <param name="start">Location of the first point of the profile.</param>
+            <param name="stop">Location of the last point of the profile.</param>
+            <param name="preallocatedBuffer">Preallocated buffer where the values are stored. The size of
+            the buffer determines the number of values to return.</param>
+            <returns>The ImageProfile object holding the image pixel values along the line segment defined by start and stop parameters.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Image.GetVoxels(System.Int32,System.Int32[0:,0:])">
+            <summary>
+            Gets the voxels of the given image plane.
+            </summary>
+            <param name="planeIndex">Zero based index of the plane.</param>
+            <param name="preallocatedBuffer">Preallocated buffer where the voxel values are stored. The size of
+            the buffer must conform with the X- and Y-size of this image.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Image.VoxelToDisplayValue(System.Int32)">
+            <summary>
+            Converts the given raw voxel value to the corresponding value
+            in the user interface display unit, for example, HU, Bq/ml.
+            </summary>
+            <param name="voxelValue">Voxel value.</param>
+            <returns>Value converted to user interface display unit.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Image.UserToDicom(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.API.PlanSetup)">
+            <summary>
+            Converts a coordinate value from the planning coordinate system used in the Eclipse user interface to DICOM coordinates.
+            </summary>
+            <param name="user">Coordinate value in the planning coordinate system.</param>
+            <param name="planSetup">Plan that defines the planning orientation or null.</param>
+            <returns>The coordinate value in DICOM coordinate system.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Image.DicomToUser(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.API.PlanSetup)">
+            <summary>
+            Converts DICOM coordinates to the planning coordinate system used in the Eclipse user interface.
+            </summary>
+            <param name="dicom">Coordinate value in DICOM coordinate system.</param>
+            <param name="planSetup">&gt;Plan that defines the planning orientation or null.</param>
+            <returns>The coordinate value in the planning coordinate system used in Eclipse user interface.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.CreationDateTime">
+            <summary>
+            The date when this object was created.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.Series">
+            <summary>
+            Used for navigating to parent series.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.XSize">
+            <summary>
+            The image size in X-direction in voxels.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.YSize">
+            <summary>
+            The image size in Y-direction in voxels.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.ZSize">
+            <summary>
+            The image size in Z-direction in voxels.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.XRes">
+            <summary>
+            The image resolution in X-direction in millimeters.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.YRes">
+            <summary>
+            The image resolution in Y-direction in millimeters.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.ZRes">
+            <summary>
+            The image resolution in Z-direction in millimeters.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.Origin">
+            <summary>
+            The origin of the image. In other words, the DICOM coordinates of the center point
+            of the upper-left hand corner voxel of the first image plane.
+            Supported only for volume images. For other types of images, the return
+            value is a vector of Double.NaNs.
+            /// </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.XDirection">
+            <summary>
+            The direction of the x-axis in the image.
+            Supported only for volume images. For other types of images, the return
+            value is a vector of Double.NaNs.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.YDirection">
+            <summary>
+            The direction of the y-axis in the image.
+            Supported only for volume images. For other types of images, the return
+            value is a vector of Double.NaNs.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.ZDirection">
+            <summary>
+            The direction of the z-axis in the image.
+            Supported only for volume images. For other types of images, the return
+            value is a vector of Double.NaNs.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.FOR">
+            <summary>
+            The UID of the frame of reference.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.HasUserOrigin">
+            <summary>
+            Defines if a user origin has been specified for the image.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.UserOrigin">
+            <summary>
+            The user origin in DICOM coordinates.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.DisplayUnit">
+            <summary>
+            The name of the display unit in which the voxels of the image are shown in the user interface.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.Window">
+            <summary>
+            The window setting. The value is given in the internal voxel scale.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.Level">
+            <summary>
+            The level setting. The value is given in the internal voxel scale.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.ContrastBolusAgentIngredientName">
+            <summary>
+            The name of the contrast bolus agent ingredient that is used in the image. If the value has not been specified, returns null.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.ImagingOrientation">
+            <summary>
+            The orientation of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.IsProcessed">
+            <summary>
+            Returns the value true if an image processing filter is in use for the image.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Image.UserOriginComments">
+            <summary>
+            The text typed on the Origin tab in the Image Properties dialog box.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Block">
+            <summary>
+            Represents an interface for a block add-on.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Block.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Block.AddOnMaterial">
+            <summary>
+            The dosimetric material of the block.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Block.Tray">
+            <summary>
+            The tray on which the block is installed.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Block.TransmissionFactor">
+            <summary>
+            The transmission factor of the selected material.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Block.TrayTransmissionFactor">
+            <summary>
+            The transmission factor of the selected tray.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Block.Type">
+            <summary>
+            The type of the block: shielding or aperture.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Block.IsDiverging">
+            <summary>
+            Checks if the block cut is diverging.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Registration">
+            <summary>
+            Represents a spatial registration between two frames of reference.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Registration.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Registration.TransformPoint(VMS.TPS.Common.Model.Types.VVector)">
+            <summary>
+            Transforms a point from the SourceFOR coordinate system to the
+            RegisteredFOR coordinate system.
+            </summary>
+            <param name="pt">Point in the SourceFOR coordinate system.</param>
+            <returns>Given point transformed to the RegisteredFOR.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Registration.InverseTransformPoint(VMS.TPS.Common.Model.Types.VVector)">
+            <summary>
+            Transforms a point in the inverse direction, that is, from the
+            coordinate system of the RegisteredFOR to the coordinate system
+            of the SourceFOR.
+            </summary>
+            <param name="pt">Point in the RegisteredFOR coordinate system.</param>
+            <returns>Given point transformed to the SourceFOR.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Registration.CreationDateTime">
+            <summary>
+            The date when this object was created.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Registration.SourceFOR">
+            <summary>
+            The frame of reference UID of the source coordinate system.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Registration.RegisteredFOR">
+            <summary>
+            The frame of reference UID of the registered coordinate system.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Registration.TransformationMatrix">
+            <summary>
+            The elements of the 4x4 transformation matrix.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.StandardWedge">
+            <summary>
+            A standard wedge is a physical piece of material with an angle that is
+            static during treatment.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Wedge">
+            <summary>
+            Represents a common wedge add-on.
+            </summary>
+            <remarks>
+            Use run-time type information via operator <c>is</c> or <c>as</c>
+            to find out the type of a Wedge.
+            </remarks>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.AddOn">
+            <summary>
+            Represents a common add-on.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.AddOn.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.AddOn.CreationDateTime">
+            <summary>
+            The date when this object was created.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Wedge.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Wedge.WedgeAngle">
+            <summary>
+            The wedge angle.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Wedge.Direction">
+            <summary>
+            The wedge orientation with respect to the beam orientation, in degrees.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.StandardWedge.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Structure">
+            <summary>
+            Represents a structure.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Structure.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Structure.GetContoursOnImagePlane(System.Int32)">
+            <summary>
+            If the structure has a segment, gets the contours of the structure on the given image plane.
+            </summary>
+            <param name="z">Zero based image plane index.</param>
+            <returns>A jagged array that holds the points for all contours of the structure on the given image plane.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Structure.GetAssignedHU(System.Double@)">
+            <summary>
+            Returns the HU value of the material.
+            </summary>
+            <param name="huValue">Double value that will contain the HU value upon return from this method</param>
+            <returns>Returns true if a HU value has been assigned for this structure.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Structure.IsPointInsideSegment(VMS.TPS.Common.Model.Types.VVector)">
+            <summary>
+            If the structure has a segment, checks if the given point lies within the structure.
+            </summary>
+            <param name="point">Location of the point.</param>
+            <returns>True if the point lies within the structure, false otherwise.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Structure.GetSegmentProfile(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.Types.VVector,System.Collections.BitArray)">
+            <summary>
+            If the structure has a segment, gets the segment profile.
+            </summary>
+            <param name="start">Location of the first point of the profile.</param>
+            <param name="stop">Location of the last point of the profile.</param>
+            <param name="preallocatedBuffer">Preallocated buffer where the values are stored. The size of
+            the buffer determines the number of values to return.</param>
+            <returns>The SegmentProfile object holding segment values (true if inside, false otherwise) along the line segment defined by start and stop parameters.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Structure.GetNumberOfSeparateParts">
+            <summary>
+            If the structure has a segment, returns the number of separate parts.
+            </summary>
+            <returns>Returns the number of separate parts in this structure</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Structure.IsEmpty">
+            <summary>
+            Checks if the structure is empty.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Structure.HasSegment">
+            <summary>
+            Checks if the structure has a segment.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Structure.Color">
+            <summary>
+            The color of the structure.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Structure.DicomType">
+            <summary>
+            The DICOM type of the structure, for example, PTV, MARKER, or ORGAN.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Structure.CenterPoint">
+            <summary>
+            The center point of the structure.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Structure.Volume">
+            <summary>
+            The calculated volume.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Structure.MeshGeometry">
+            <summary>
+            The mesh geometry.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.PlanSum">
+            <summary>
+            Represents a plan sum interface.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.PlanSum.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSum.StructureSet">
+            <summary>
+            The structure set.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PlanSum.PlanSetups">
+            <summary>
+            A collection of plan setups.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.MLC">
+            <summary>
+            Represents a Multileaf Collimator (MLC).
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.MLC.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.MLC.ManufacturerName">
+            <summary>
+            The name of the manufacturer of the Multileaf Collimator (MLC).
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.MLC.SerialNumber">
+            <summary>
+            The serial number given to the Multileaf Collimator (MLC) by the factory.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.MLC.Model">
+            <summary>
+            The number or name of the Multileaf Collimator (MLC) model.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.MLC.MinDoseDynamicLeafGap">
+            <summary>
+            For dose-dynamic treatments, the minimum gap (mm) between moving,
+            open leaf pairs that the Multileaf Collimator (MLC) hardware can handle.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Hospital">
+            <summary>
+            Represents a hospital.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Hospital.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Hospital.CreationDateTime">
+            <summary>
+            The date when this object was created.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Hospital.Location">
+            <summary>
+            The location of the hospital.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.AddOnMaterial">
+            <summary>
+            Represents add-on material.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.AddOnMaterial.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Study">
+            <summary>
+            Represents a study.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Study.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Study.CreationDateTime">
+            <summary>
+            The date when this object was created.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Study.UID">
+            <summary>
+            The DICOM UID.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Study.Series">
+            <summary>
+            A collection of series.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.PatientSummary">
+            <summary>
+            Represents a patient summary.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.PatientSummary.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PatientSummary.Id">
+            <summary>
+            The patient ID.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PatientSummary.Id2">
+            <summary>
+            The patient ID2.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PatientSummary.SSN">
+            <summary>
+            The Social Security Account Number (SSN) of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PatientSummary.LastName">
+            <summary>
+            The last name of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PatientSummary.MiddleName">
+            <summary>
+            The middle name of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PatientSummary.FirstName">
+            <summary>
+            The first name of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PatientSummary.Sex">
+            <summary>
+            The gender of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PatientSummary.DateOfBirth">
+            <summary>
+            The date of birth of the patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.PatientSummary.CreationDateTime">
+            <summary>
+            The date when the patient object was created.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Slot">
+            <summary>
+            Represents a slot.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Slot.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Slot.Number">
+            <summary>
+            The slot number is unique within an instance of a treatment machine.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Application">
+            <summary>
+            The main application interface.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Application.CreateApplication(System.String,System.String)">
+            <summary>
+            Creates an application instance and logs into the system.
+            </summary>
+            <param name="username">Username for logging in or null value to invoke an interactive login dialog.</param>
+            <param name="password">Password for logging in or null value to invoke an interactive login dialog</param>
+            <returns>Application object that is the root of the datamodel.</returns>
+            <remarks>
+            Code that uses this API must run on a single-threaded apartment
+            (STAThread). Dispose must be called before the program exits. Only
+            one Application instance may be created during the entire run of the
+            program.
+            </remarks>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Application.OpenPatient(VMS.TPS.Common.Model.API.PatientSummary)">
+            <summary>
+            Opens a patient.
+            </summary>
+            <param name="patientSummary">Patient summary.</param>
+            <returns>Opened patient if found.</returns>
+            <remarks>Only one patient can be open at the same time.</remarks>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Application.OpenPatientById(System.String)">
+            <summary>
+            Opens a patient by using a patient identifier.
+            </summary>
+            <param name="id">Patient ID</param>
+            <returns>Opened patient if found.</returns>
+            <remarks>Only one patient can be open at the same time.</remarks>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Application.ClosePatient">
+            <summary>
+            Closes the current patient. If the script tries to access the data of a closed patient, an access violation exception occurs.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Application.LogExportToHipaa(System.String)">
+            <summary>
+            Add HIPAA log record if HIPAA is enabled
+            </summary>
+            <param name="patientId"></param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Application.ConsoleEventHandler(VMS.TPS.Common.Model.API.Application.ConsoleHandlerEventCode)">
+            <summary>
+            CTRL+BREAK handler, stops script execution
+            </summary>
+            <param name="eventCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Application.Dispose">
+            <summary>
+            Releases all unmanaged resources of this object.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Application.Finalize">
+            <summary>
+            Called only if user forgot to call Dispose()
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Application.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Application.CurrentUser">
+            <summary>
+            The user who is currently logged on.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Application.PatientSummaries">
+            <summary>
+            Fetches patient summaries from the database.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Technique">
+            <summary>
+            Represents a treatment field technique.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Technique.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.OmniWedge">
+            <summary>
+            An OmniWedge is a special type of wedge that combines an open
+            field, a motorized wedge, and a virtual wedge to create the desired wedge
+            effect.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.OmniWedge.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.ExternalBeam">
+            <summary>
+            Represents an external beam.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.ExternalBeam.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ExternalBeam.SourceAxisDistance">
+            <summary>
+            The Source Axis Distance.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ExternalBeam.MachineModel">
+            <summary>
+            The model of the treatment machine.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ExternalBeam.MachineScaleDisplayName">
+            <summary>
+            The name of the scale used in the treatment machine.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.EnhancedDynamicWedge">
+            <summary>
+            An Enhanced Dynamic Wedge is similar to a Dynamic Wedge, but
+            it features more wedge angles than a simple Dynamic Wedge.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.DynamicWedge">
+            <summary>
+            A Dynamic Wedge is formed by a moving jaw of a standard collimator
+            during irradiation.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.DynamicWedge.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.EnhancedDynamicWedge.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.DVHData">
+            <summary>
+            Represents Dose Volume Histogram (DVH) data.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.DVHData.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.DVHData.Coverage">
+            <summary>
+            The dose coverage of the target, normalized to 0.0 .. 1.0.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.DVHData.Volume">
+            <summary>
+            The volume of the structure.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.DVHData.MinDose">
+            <summary>
+            The minimum dose.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.DVHData.MaxDose">
+            <summary>
+            The maximum dose.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.DVHData.MeanDose">
+            <summary>
+            The mean dose.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.DVHData.MedianDose">
+            <summary>
+            The median dose.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.DVHData.StdDev">
+            <summary>
+            The standard deviation.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.DVHData.SamplingCoverage">
+            <summary>
+            The sampling coverage.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.DVHData.CurveData">
+            <summary>
+            The points of the Dose Volume Histogram (DVH) curve.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.ControlPoint">
+            <summary>
+            Represents a point in a planned sequence of treatment beam parameters.
+            </summary>
+            <remarks>
+            Control points are discussed in DICOM PS 3.3 C.8.8.14. All beams have
+            at least two control points. Note that some values may be NaN
+            if they are not applicable to the treatment plan in question.
+            </remarks>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.ControlPoint.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ControlPoint.MetersetWeight">
+            <summary>
+            The cumulative meterset weight to this control point. The cumulative meterset
+            weight for the first item in a control point sequence is zero.
+            </summary>
+            <remarks>
+            The meterset at a given control point is equal to the beam meterset,
+            multiplied by the cumulative meterset weight for the control point,
+            divided by the final cumulative meterset weight.
+            The definition is adapted from DICOM PS 3.3 C.8.8.14.
+            </remarks>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ControlPoint.LeafPositions">
+            <summary>
+            The positions of the beam collimator leaf pairs (in mm) in the IEC BEAMLIMITING
+            DEVICE coordinate axis appropriate to the device type. For example, the X-axis
+            for MLCX and the Y-axis for MLCY. The two-dimensional array is
+            indexed [bank, leaf] where the bank is either 0 or 1. Bank 0 represents
+            the leaf bank to the negative MLC X direction, and bank 1 to the
+            positive MLC X direction. If there is no MLC, a (0,0)-length array is
+            returned.
+            </summary>
+            <remarks>
+            The definition is adapted from DICOM PS 3.3 C.8.8.14
+            "Leaf/Jaw Positions". The difference is that DICOM supports a
+            position sequence for each collimator type while we support a position
+            sequence for a single MLC plus four jaws.
+            </remarks>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ControlPoint.JawPositions">
+            <summary>
+            The positions of the beam collimator jaws (in mm) in the IEC BEAM LIMITING DEVICE
+            coordinates.
+            </summary>
+            <remarks>
+            The definition is adapted from DICOM PS 3.3 C.8.8.14
+            "Leaf/Jaw Positions". The difference is that DICOM likens the
+            collimator jaw positions with MLC leaf positions and places
+            them in the same sequence.
+            </remarks>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ControlPoint.CollimatorAngle">
+            <summary>
+            The orientation of the IEC BEAM LIMITING DEVICE coordinate system with
+            respect to the IEC GANTRY coordinate system (in degrees).
+            </summary>
+            <remarks>
+            The definition is adapted from DICOM PS 3.3 C.8.8.14
+            "Beam Limiting Device Angle", but rotation direction is
+            not specified explicitly.
+            </remarks>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ControlPoint.GantryAngle">
+            <summary>
+            The gantry angle of the radiation source. In other words, the orientation of the IEC GANTRY
+            coordinate system with respect to the IEC FIXED REFERENCE coordinate
+            system (in degrees).
+            </summary>
+            <remarks>
+            The definition is from DICOM PS 3.3 C.8.8.14 "Gantry Angle", but
+            rotation direction does not change during treatment and it is
+            specified in Beam.GantryDirection instead.
+            </remarks>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ControlPoint.PatientSupportAngle">
+            <summary>
+            The patient support angle. In other words, the orientation of the IEC PATIENT SUPPORT
+            (turntable) coordinate system with respect to the IEC FIXED REFERENCE
+            coordinate system (in degrees).
+            </summary>
+            <remarks>
+            The definition is from DICOM PS 3.3 C.8.8.14 "Patient Support Angle",
+            but here rotation direction is specified implicitly towards the
+            shortest angle between the current and the next control point.
+            </remarks>
+        </member>
+        <member name="T:VMS.TPS.Version.VersionInfo">
+            <summary>
+            This class is a set of constants that specify build version information.
+            Generated automatically from TpsNetVersion.in - do not edit by hand.
+            The logic is copied from the VFC equivalents in TpsVersion.in.
+            Names and identifiers are kept exactly the same as in the original VFC version
+            to help in maintenance.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.FieldReferencePoint">
+            <summary>
+            Represents a reference point interface.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.FieldReferencePoint.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.FieldReferencePoint.ReferencePoint">
+            <summary>
+            Used for navigating to an underlying reference point.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.FieldReferencePoint.RefPointLocation">
+            <summary>
+            The location of the reference point.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.FieldReferencePoint.FieldDose">
+            <summary>
+            The field dose.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.FieldReferencePoint.EffectiveDepth">
+            <summary>
+            The effective depth of the field reference point. For arc fields this is the average value
+            over the span of the arc.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.FieldReferencePoint.SSD">
+            <summary>
+            The Source-to-Skin Distance (SSD) of the reference point. For arc fields this is the average value
+            over the span of the arc.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.FieldReferencePoint.IsPrimaryReferencePoint">
+            <summary>
+            Checks if the reference point is primary.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.FieldReferencePoint.IsFieldDoseNominal">
+            <summary>
+            Checks if the field dose is nominal (the real calculated field dose is not known).
+            If the field doses at a reference point are nominal, they alone cannot be used to verify MU calculation.”
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Applicator">
+            <summary>
+            Represents an applicator add-on.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Applicator.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.ControlPointCollection">
+            <summary>
+            Represents a collection of machine parameters that describe the planned
+            treatment beam.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.ControlPointCollection.GetEnumerator">
+            <summary>
+            Retrieves enumerator for ControlPoints in the collection.
+            </summary>
+            <returns>Enumerator for ControlPoints in the collection.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.ControlPointCollection.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ControlPointCollection.Item(System.Int32)">
+            <summary>
+            Gets the specified ControlPoint from the collection.
+            </summary>
+            <param name="index">Zero based index of the ControlPoint to retrieve.</param>
+            <returns>ControlPoint at the given index.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ControlPointCollection.Count">
+            <summary>
+            The number of control points in the collection.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.User">
+            <summary>
+            Represents a user.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.User.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.User.Language">
+            <summary>
+            The language of the user.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Series">
+            <summary>
+            Represents a series.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Series.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Series.UID">
+            <summary>
+            The DICOM UID.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Series.Modality">
+            <summary>
+            The modality of the series.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Series.ImagingDeviceId">
+            <summary>
+            The identifier of the device that is used to scan the images into the system.
+            Returns an empty string if the imaging device is not unique or the device identifier is not defined.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Series.ImagingDeviceModel">
+            <summary>
+            The model of the device that is used to scan the images into the system.
+            Returns an empty string if the imaging device is not unique or the device model is not defined.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Series.ImagingDeviceManufacturer">
+            <summary>
+            The manufacturer of the device that is used to scan the images into the system.
+            Returns an empty string if the imaging device is not unique or the device manufacturer is not defined.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Series.ImagingDeviceSerialNo">
+            <summary>
+            The serial number of the device that is used to scan the images into the system.
+            Returns an empty string if the imaging device is not unique or the device serial number is not defined.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Series.Study">
+            <summary>
+            Used for navigating to parent study.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Series.FOR">
+            <summary>
+            The UID of the frame of reference.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Series.Images">
+            <summary>
+            A collection of images that belong to the series.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.ReferencePoint">
+            <summary>
+            Represents a reference point interface.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.ReferencePoint.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Globals">
+            <summary>
+            A class that contains static methods.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Globals.CheckAbort">
+            <summary>
+            Checks if abort is needed and stops execution.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Globals.AbortNow">
+            <summary>
+            The flag that aborts script execution the next time any property or
+            method of the Eclipse Scripting API is accessed.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.ScriptContext">
+            <summary>
+            A class that contains the context information for the script.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ScriptContext.CurrentUser">
+            <summary>
+            The current user of the application.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ScriptContext.Course">
+            <summary>
+            The course. The value may be null if the context has no course.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ScriptContext.Image">
+            <summary>
+            The 3D image. The value may be null if the context has no image.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ScriptContext.StructureSet">
+            <summary>
+            The structure set. The value may be null if the context has no structure set.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ScriptContext.Patient">
+            <summary>
+            The patient. The value may be null if the context has no patient.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ScriptContext.PlanSetup">
+            <summary>
+            The plan setup. The value may be null if the context has no plan setup.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ScriptContext.PlansInScope">
+            <summary>
+            Retrieves a list of all plans in the Scope window.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.ScriptContext.PlanSumsInScope">
+            <summary>
+            Retrieves a list of all plan sums in the Scope window.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Course">
+            <summary>
+            Represents a course.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Course.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Course.StartDateTime">
+            <summary>
+            The date and time when the course was started.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Course.CompletedDateTime">
+            <summary>
+            The date and time when the course was completed.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Course.PlanSetups">
+            <summary>
+            A collection of plans for the course.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Course.PlanSums">
+            <summary>
+            A collection of plan sums for the course.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Beam">
+            <summary>
+            Represents a beam.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Beam.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Beam.GetSourceLocation(System.Double)">
+            <summary>
+            Returns the location of the radiation source at a given gantry angle
+            of the beam.
+            </summary>
+            <param name="gantryAngle">Gantry angle</param>
+            <returns>Source location</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.CreationDateTime">
+            <summary>
+            The date when this object was created.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.IsSetupField">
+            <summary>
+            Checks if a field is a setup field.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.ExternalBeam">
+            <summary>
+            An external beam.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.EnergyModeDisplayName">
+            <summary>
+            The display name of the energy mode. For example '18E' or '6X-SRS'.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.DoseRate">
+            <summary>
+            The dose rate of the treatment machine in MU/min.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.Technique">
+            <summary>
+            The technique used in the planning field.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.SetupTechnique">
+            <summary>
+            The setup technique.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.ArcLength">
+            <summary>
+            The arc length.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.GantryDirection">
+            <summary>
+            The gantry rotation direction: clockwise (CW), counterclockwise (CCW), or none.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.IsocenterPosition">
+            <summary>
+            The position of the isocenter.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.Wedges">
+            <summary>
+            A collection of installed wedges.
+            </summary>
+            <remarks>
+            Use operator <c>is</c> or <c>as</c> to distinguish between various wedge types.
+            </remarks>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.Trays">
+            <summary>
+            A collection of installed trays.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.Blocks">
+            <summary>
+            A collection of installed blocks.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.Compensator">
+            <summary>
+            The compensator.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.MLC">
+            <summary>
+            Returns a hardware description of the Multileaf Collimator (MLC) used in an MLC plan, or
+            null if no MLC exists.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.MLCPlanType">
+            <summary>
+            The type of the Multileaf Collimator (MLC) plan.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.DosimetricLeafGap">
+            <summary>
+            The dosimetric leaf gap that has been configured for the Dynamic Multileaf Collimator (DMLC) fields in the system. The dosimetric leaf gap is
+            used for accounting for dose transmission through rounded MLC leaves.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.MLCTransmissionFactor">
+            <summary>
+            The transmission factor of the Multileaf Collimator (MLC) material.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.ControlPoints">
+            <summary>
+            An enumerable sequence of machine parameters that
+            describe the planned treatment beam.
+            </summary>
+            <remarks>
+            A motorized wedge is described with four control points.
+            If Elekta OmniWedge is used, the first three control points
+            are used to describe the motorized wedge. Note, that for proton
+            beams the control points are not currently supported and an empty
+            collection is returned.
+            </remarks>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.Boluses">
+            <summary>
+            A collection of field boluses.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.Applicator">
+            <summary>
+            An applicator is a specific add-on used in the beam.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.ReferenceImage">
+            <summary>
+            The reference image of the field.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.WeightFactor">
+            <summary>
+            The weight factor of the beam.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.CalculationLogs">
+            <summary>
+            A collection of field calculation logs.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.Meterset">
+            <summary>
+            The meterset value of the beam.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.MetersetPerGy">
+            <summary>
+            The calculated meterset/Gy value for the field.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.PlannedSSD">
+            <summary>
+            The Source-to-Skin Distance (SSD) value defined by the user.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.SSD">
+            <summary>
+            The Source-to-Skin Distance (SSD). For arc fields, the SSD at the start angle.
+            This value is calculated from the geometrical setup of the field.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.SSDAtStopAngle">
+            <summary>
+            The Source-to-Skin Distance (SSD) at the stop angle of an arc field.
+            This value is calculated from the geometrical setup of the field.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.FieldReferencePoints">
+            <summary>
+            A collection of field reference points.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.NormalizationFactor">
+            <summary>
+            The field normalization factor.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.NormalizationMethod">
+            <summary>
+            The field normalization method.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Beam.AverageSSD">
+            <summary>
+            The average Source-to-Skin Distance (SSD) of an arc field.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Dose">
+            <summary>
+            Represents a dose matrix.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Dose.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Dose.GetDoseToPoint(VMS.TPS.Common.Model.Types.VVector)">
+            <summary>
+            Gets the point dose at a specified location.
+            </summary>
+            <param name="at">Location</param>
+            <returns>Dose value</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Dose.GetDoseProfile(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.Types.VVector,System.Double[])">
+            <summary>
+            Gets the dose profile.
+            </summary>
+            <param name="start">Location of the first point of the profile.</param>
+            <param name="stop">Location of the last point of the profile.</param>
+            <param name="preallocatedBuffer">Preallocated buffer where the values are stored. The size of
+            the buffer determines the number of values to return.</param>
+            <returns>The DoseProfile object holding the dose values along the line segment defined by start and stop parameters.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Dose.GetVoxels(System.Int32,System.Int32[0:,0:])">
+            <summary>
+            Gets the voxels of the given dose plane.
+            </summary>
+            <param name="planeIndex">Zero based index of the plane.</param>
+            <param name="preallocatedBuffer">Preallocated buffer where the voxel values are stored. The size of
+            the buffer must conform with the X- and Y-size of this dose.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Dose.VoxelToDoseValue(System.Int32)">
+            <summary>
+            Converts the given raw voxel value to the corresponding
+            dose value.
+            </summary>
+            <param name="voxelValue">Voxel value.</param>
+            <returns>Value converted to dose.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.Isodoses">
+            <summary>
+            A collection of isodoses.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.DoseMax3D">
+            <summary>
+            The maximum dose.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.DoseMax3DLocation">
+            <summary>
+            The location of the maximum dose.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.XSize">
+            <summary>
+            The dose matrix size in X-direction in voxels.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.YSize">
+            <summary>
+            The dose matrix size in Y-direction in voxels.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.ZSize">
+            <summary>
+            The dose matrix size in Z-direction in voxels.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.XRes">
+            <summary>
+            The dose matrix resolution in X-direction in millimeters.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.YRes">
+            <summary>
+            The dose matrix resolution in Y-direction in millimeters.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.ZRes">
+            <summary>
+            The dose matrix resolution in Z-direction in millimeters.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.Origin">
+            <summary>
+            The origin of the dose matrix. In other words, the DICOM coordinates of the center point
+            of the upper-left hand corner voxel of the first dose plane.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.XDirection">
+            <summary>
+            The direction of the x-axis in the dose matrix.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.YDirection">
+            <summary>
+            The direction of the y-axis in the dose matrix.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Dose.ZDirection">
+            <summary>
+            The direction of the z-axis in the dose matrix.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.MotorizedWedge">
+            <summary>
+            A motorized wedge is a standard wedge placed in the field for a
+            user-defined fraction of the total treatment time.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.MotorizedWedge.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Fractionation">
+            <summary>
+            Represents a fractionation.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Fractionation.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Fractionation.CreationDateTime">
+            <summary>
+            The date when this object was created.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Fractionation.NumberOfFractions">
+            <summary>
+            The number of fractions.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Fractionation.PrescribedDosePerFraction">
+            <summary>
+            The prescribed fraction dose.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Fractionation.DosePerFractionInPrimaryRefPoint">
+            <summary>
+            The calculated fraction dose in the primary reference point.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.EnergyMode">
+            <summary>
+            Represents an energy mode.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.EnergyMode.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.EnergyMode.IsPhoton">
+            <summary>
+            Checks if the mode is photon.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.EnergyMode.IsProton">
+            <summary>
+            Checks if the mode is proton.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.EnergyMode.IsElectron">
+            <summary>
+            Checks if the mode is electron.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.StructureSet">
+            <summary>
+            Represents a structure set.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.StructureSet.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.StructureSet.UID">
+            <summary>
+            DICOM UID.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.StructureSet.Image">
+            <summary>
+            Used for navigating to the image.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.StructureSet.Structures">
+            <summary>
+            Used for navigating to the child structures.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.BeamCalculationLog">
+            <summary>
+            Represents a beam calculation log.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.BeamCalculationLog.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.BeamCalculationLog.Category">
+            <summary>
+            The log category, for example, "Dose", or "Optimization".
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.BeamCalculationLog.MessageLines">
+            <summary>
+            The log as an array of lines.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Isodose">
+            <summary>
+            Represents an isodose level.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Isodose.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Isodose.Level">
+            <summary>
+            The dose value of the isodose level.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Isodose.Color">
+            <summary>
+            The color of the isodose.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Isodose.MeshGeometry">
+            <summary>
+            The triangle mesh of the isodose. Returned for those isodose levels that
+            are rendered in 3D in Eclipse.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Bolus">
+            <summary>
+            Represents a bolus.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Bolus.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Bolus.Id">
+            <summary>
+            The identifier of the bolus.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Bolus.Name">
+            <summary>
+            The name of the bolus.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Bolus.MaterialCTValue">
+            <summary>
+            The CT value of the bolus material (HU).
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Tray">
+            <summary>
+            Represents a tray add-on.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Tray.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.API.Compensator">
+            <summary>
+            Represents a beam compensator.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.API.Compensator.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Compensator.Tray">
+            <summary>
+            The tray to which the compensator is connected.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Compensator.Slot">
+            <summary>
+            The slot into which the tray is inserted.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.API.Compensator.Material">
+            <summary>
+            The dosimetric material used in the compensator.
+            </summary>
+        </member>
+    </members>
+</doc>

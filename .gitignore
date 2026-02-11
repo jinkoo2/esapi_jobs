@@ -1,0 +1,35 @@
+# Underscore-prefixed files and folders
+_*/
+
+# C# / Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.cache
+*.pdb
+*.exe
+*.dll
+*.log
+*.nupkg
+packages/
+TestResults/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+.venv/
+venv/
+env/
+.env
+
+# OS
+Thumbs.db
+Desktop.ini
+.DS_Store

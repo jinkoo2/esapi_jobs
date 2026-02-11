@@ -1,0 +1,36 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(xcopy:*)",
+      "Bash(copy \"C:\\\\Users\\\\jkim20\\\\Documents\\\\Eclipse Scripting API\\\\Projects\\\\templates\\\\standalone\\\\standalone.cs\" \"C:\\\\Users\\\\jkim20\\\\Documents\\\\Eclipse Scripting API\\\\Projects\\\\templates\\\\hello_world\\\\hello_world.cs\")",
+      "Bash(copy:*)",
+      "Bash(python3:*)",
+      "Bash(python:*)",
+      "Bash(where:*)",
+      "Bash(reg query:*)",
+      "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v4.0.30319\\\\MSBuild.exe\":*)",
+      "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v4.0.30319\\\\MSBuild.exe\" \"C:\\\\Users\\\\jkim20\\\\Documents\\\\Eclipse Scripting API\\\\Projects\\\\projects\\\\hello_world\\\\hello_world.csproj\" /p:Configuration=Debug)",
+      "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v4.0.30319\\\\MSBuild.exe\" hello_world.csproj /p:Configuration=Debug)",
+      "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v4.0.30319\\\\MSBuild.exe\" hello_world.csproj \"/p:Configuration=Debug\")",
+      "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v4.0.30319\\\\MSBuild.exe\" hello_world.csproj)",
+      "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v4.0.30319\\\\MSBuild.exe\" hello_world.csproj /p:Configuration=Release)",
+      "Bash(cmd /c \"\"\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v4.0.30319\\\\MSBuild.exe\"\" hello_world.csproj /p:Configuration=Release\")",
+      "Bash(C:WindowsMicrosoft.NETFramework64v4.0.30319MSBuild.exe hello_world.csproj -p:Configuration=Release)",
+      "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v4.0.30319\\\\MSBuild.exe\" hello_world.csproj //p:Configuration=Release)",
+      "Bash(\"C:\\\\Users\\\\jkim20\\\\Documents\\\\Eclipse Scripting API\\\\Projects\\\\projects\\\\hello_world\\\\bin\\\\release\\\\hello_world.exe\")",
+      "Bash(dir:*)",
+      "Bash(cmd /c \"dir /s /b \"\"C:\\\\Program Files \\(x86\\)\\\\Varian\\\\RTM\\\\16.1\\\\esapi\\\\API\\\\*.dll\"\" 2>nul\")",
+      "Bash(pip show:*)",
+      "Bash(dotnet --list-sdks:*)",
+      "Bash(cmd /c \"where /r \"\"C:\\\\Program Files \\(x86\\)\\\\Microsoft Visual Studio\"\" Microsoft.CodeAnalysis.CSharp.dll 2>nul\")",
+      "Bash(cmd /c \"where /r \"\"C:\\\\Program Files\\\\dotnet\"\" Microsoft.CodeAnalysis.CSharp.dll 2>nul\")",
+      "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v4.0.30319\\\\MSBuild.exe\" esapi_job_processor.csproj //p:Configuration=Debug)",
+      "Bash(\"C:\\\\Users\\\\jkim20\\\\Documents\\\\Eclipse Scripting API\\\\Projects\\\\projects\\\\esapi_job_processor\\\\bin\\\\debug\\\\esapi_job_processor.exe\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git branch:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

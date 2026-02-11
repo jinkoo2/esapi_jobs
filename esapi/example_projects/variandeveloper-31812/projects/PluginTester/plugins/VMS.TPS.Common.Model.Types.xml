@@ -1,0 +1,581 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>VMS.TPS.Common.Model.Types</name>
+    </assembly>
+    <members>
+        <member name="T:VMS.TPS.Common.Model.Types.VVector">
+            <summary>
+            Represents a displacement in 3D space.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.VVector.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Constructs a VVector.
+            </summary>
+            <param name="xi">X component.</param>
+            <param name="yi">Y component.</param>
+            <param name="zi">Z component.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.VVector.Distance(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.Types.VVector)">
+            <summary>
+            The distance between the locations represented by the given VVectors.
+            </summary>
+            <param name="left">First operand.</param>
+            <param name="right">Second operand</param>
+            <returns>Returns the distance between the locations represented by the given VVectors.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.VVector.ScaleToUnitLength">
+            <summary>
+            Scales this VVector so that its length becomes equal to unity.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.VVector.ScalarProduct(VMS.TPS.Common.Model.Types.VVector)">
+            <summary>
+            The scalar product of this VVector and the given VVector.
+            </summary>
+            <param name="left">VVector that is second operand of the scalar product.</param>
+            <returns>Returns the scalar product of this VVector with the given VVector.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.VVector.op_Subtraction(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.Types.VVector)">
+            <summary>
+            The subtraction of VVectors.
+            </summary>
+            <param name="left">First operand.</param>
+            <param name="right">Second operand.</param>
+            <returns>Result of subtraction.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.VVector.op_Addition(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.Types.VVector)">
+            <summary>
+            The addition of VVectors.
+            </summary>
+            <param name="left">First operand.</param>
+            <param name="right">Second operand.</param>
+            <returns>Result of addition.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.VVector.op_Multiply(VMS.TPS.Common.Model.Types.VVector,System.Double)">
+            <summary>
+            The multiplication of a VVector and a double.
+            </summary>
+            <param name="val">VVector to multiply.</param>
+            <param name="mul">Multiplier.</param>
+            <returns>Result of multiplication.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.VVector.op_Multiply(System.Double,VMS.TPS.Common.Model.Types.VVector)">
+            <summary>
+            The multiplication of a VVector and a double.
+            </summary>
+            <param name="val">VVector to multiply.</param>
+            <param name="mul">Multiplier.</param>
+            <returns>Result of multiplication.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.VVector.op_Division(VMS.TPS.Common.Model.Types.VVector,System.Double)">
+            <summary>
+            The division of a VVector by a double.
+            </summary>
+            <param name="val">VVector to divide.</param>
+            <param name="div">Divisor.</param>
+            <returns>Result of division.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.VVector.Item(System.Int32)">
+            <summary>
+            Indexing for the x, y and z components.
+            </summary>
+            <param name="i">Value of 0,1 or 2 that correspond to x,y and z components.</param>
+            <returns>Returns the given component of this VVector.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.VVector.LengthSquared">
+            <summary>
+            The square of the length of the VVector.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.VVector.Length">
+            <summary>
+            The length of the VVector.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.VVector.x">
+            <summary>
+            The X component of the VVector.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.VVector.y">
+            <summary>
+            The Y component of the VVector.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.VVector.z">
+            <summary>
+            The Z component of the VVector.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.DoseValue">
+            <summary>
+            Represents a dose value.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.#ctor(System.Double,System.String)">
+            <summary>
+            Constructs a DoseValue.
+            </summary>
+            <param name="value">Value for this instance.</param>
+            <param name="unitName">String that corresponds to one of the enumeration values of DoseUnit.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.#ctor(System.Double,VMS.TPS.Common.Model.Types.DoseValue.DoseUnit)">
+            <summary>
+            Constructs a DoseValue.
+            </summary>
+            <param name="value">Value for this instance</param>
+            <param name="unit">Unit of this instance.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.op_Subtraction(VMS.TPS.Common.Model.Types.DoseValue,VMS.TPS.Common.Model.Types.DoseValue)">
+            <summary>
+            Subtraction of dose values.
+            </summary>
+            <param name="dv1">First operand.</param>
+            <param name="dv2">Second operand.</param>
+            <returns>Subtraction result.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.op_Addition(VMS.TPS.Common.Model.Types.DoseValue,VMS.TPS.Common.Model.Types.DoseValue)">
+            <summary>
+            Addition of dose values.
+            </summary>
+            <param name="dv1">First operand.</param>
+            <param name="dv2">Second operand.</param>
+            <returns>Result of addition.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.op_Multiply(VMS.TPS.Common.Model.Types.DoseValue,System.Double)">
+            <summary>
+            Multiplication of a dose value and a double.
+            </summary>
+            <param name="dv">DoseValue to multiply.</param>
+            <param name="dbl">Multiplier.</param>
+            <returns>Result of multiplication.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.op_Multiply(System.Double,VMS.TPS.Common.Model.Types.DoseValue)">
+            <summary>
+            Multiplication of a dose value and a double.
+            </summary>
+            <param name="dbl">Multiplier.</param>
+            <param name="dv">DoseValue to multiply.</param>
+            <returns>Result of Multiplication.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.op_Division(VMS.TPS.Common.Model.Types.DoseValue,System.Double)">
+            <summary>
+            Division of a dose value by a double.
+            </summary>
+            <param name="dv">Dividend.</param>
+            <param name="dbl">Divisor.</param>
+            <returns>Result of division.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.op_Division(VMS.TPS.Common.Model.Types.DoseValue,VMS.TPS.Common.Model.Types.DoseValue)">
+            <summary>
+            Division of two dose values.
+            </summary>
+            <param name="dv1">Dividend.</param>
+            <param name="dv2">Divisor.</param>
+            <returns>Result of division.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.ToString">
+            <summary>
+            A string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.UndefinedDose">
+            <summary>
+            A dose value, for which the value is Double.NaN and  
+            the unit is unknown. 
+            </summary>
+            <returns>Undefined dose value.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.GetSchema">
+            <summary>
+            This member is internal to the Eclipse Scripting API.
+            </summary>
+            <returns>XmlSchema.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            This member is internal to the Eclipse Scripting API.
+            </summary>
+            <param name="reader">XmlReader.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseValue.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support.
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.DoseValue.Dose">
+            <summary>
+            The value of this instance.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.DoseValue.Unit">
+            <summary>
+            The unit of this instance.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.DoseValue.UnitAsString">
+            <summary>
+            The unit of this instance as a string.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.DoseValue.ValueAsString">
+            <summary>
+            The value of this instance as a string.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.DoseValue.DoseUnit">
+            <summary>
+            The unit of the dose value.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.VRect`1">
+            <summary>
+            Represents a rectangle.
+            </summary>
+            <typeparam name="T">Type of the values in the rectangle.</typeparam>
+            <remarks>
+            Currently limited to value types.
+            </remarks>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.VRect`1.#ctor(`0,`0,`0,`0)">
+            <summary>
+            Constructs a VRect.
+            </summary>
+            <param name="x1">X1 coordinate of the rectangle.</param>
+            <param name="y1">Y1 coordinate of the rectangle.</param>
+            <param name="x2">X2 coordinate of the rectangle.</param>
+            <param name="y2">Y2 coordinate of the rectangle.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.VRect`1.ToString">
+            <summary>
+            A string that represents the current object.
+            </summary>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.VRect`1.X1">
+            <summary>
+            The X1-coordinate of the rectangle.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.VRect`1.Y1">
+            <summary>
+            The Y1-coordinate of the rectangle.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.VRect`1.X2">
+            <summary>
+            The X2-coordinate of the rectangle.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.VRect`1.Y2">
+            <summary>
+            The Y2-coordinate of the rectangle.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.DVHPoint">
+            <summary>
+            Represents a value on a Dose Volume Histogram (DVH) curve.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DVHPoint.#ctor(VMS.TPS.Common.Model.Types.DoseValue,System.Double,System.String)">
+            <summary>
+            Constructs a DVHPoint. 
+            </summary>
+            <param name="dose">Dose value of the point.</param>
+            <param name="volume">Volume value of the point.</param>
+            <param name="volumeUnit">Unit of volume.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.DVHPoint.DoseValue">
+            <summary>
+            The dose value of the point.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.DVHPoint.Volume">
+            <summary>
+            The volume value of the point.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.DVHPoint.VolumeUnit">
+            <summary>
+            The volume unit of the point.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.SegmentProfilePoint">
+            <summary>
+            Represents a point of a segment profile.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.SegmentProfilePoint.#ctor(VMS.TPS.Common.Model.Types.VVector,System.Boolean)">
+            <summary>
+            Constructs a SegmentProfilePoint. 
+            </summary>
+            <param name="position">Position of the point.</param>
+            <param name="value">Value of the point.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.SegmentProfilePoint.Position">
+            <summary>
+            The position of the point.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.SegmentProfilePoint.Value">
+            <summary>
+            The value of the point: true if the point is inside the segment, false otherwise.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.SegmentProfile">
+            <summary>
+            Represents the segment values along a line segment.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.SegmentProfile.#ctor(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.Types.VVector,System.Collections.BitArray)">
+            <summary>
+            Constructs a SegmentProfile.
+            </summary>
+            <param name="origin">Origin, i.e. position of first point of the profile.</param>
+            <param name="step">Step length and direction between points on the profile.</param>
+            <param name="data">Array of values of the profile.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.SegmentProfile.GetEnumerator">
+            <summary>
+            An enumerator for points in the profile.
+            </summary>
+            <returns>Enumerator for points in the profile.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.SegmentProfile.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            A non-generic version of the enumerator for points in the profile.
+            </summary>
+            <returns>Enumerator for points in the profile.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.SegmentProfile.Item(System.Int32)">
+            <summary>
+            Gets a specified point from the profile.
+            </summary>
+            <param name="index">Zero based index of the point to retrieve.</param>
+            <returns>Point at the given index.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.SegmentProfile.Count">
+            <summary>
+            The number of points in the profile.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.SegmentProfile.EdgeCoordinates">
+            <summary>
+            Returns the coordinates of the edges of the segment along
+            the segment profile. 
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.DosimeterUnit">
+            <summary>
+            The dosimeter unit.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.MetersetValue">
+            <summary>
+            Represents a meterset value.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.MetersetValue.#ctor(System.Double,VMS.TPS.Common.Model.Types.DosimeterUnit)">
+            <summary>
+            Constructs a MetersetValue.
+            </summary>
+            <param name="value">Value for this instance.</param>
+            <param name="unit">Unit for this instance.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.MetersetValue.GetSchema">
+            <summary>
+            This member is internal to the Eclipse Scripting API.
+            </summary>
+            <returns>XmlSchema.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.MetersetValue.ReadXml(System.Xml.XmlReader)">
+            <summary>
+            This member is internal to the Eclipse Scripting API.
+            </summary>
+            <param name="reader">XmlReader.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.MetersetValue.WriteXml(System.Xml.XmlWriter)">
+            <summary>
+            Serialization support.
+            </summary>
+            <param name="writer">The System.Xml.XmlWriter stream to which the object is serialized.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.MetersetValue.Value">
+            <summary>
+            The value of this instance.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.MetersetValue.Unit">
+            <summary>
+            The unit of this instance.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.PlanType">
+            <summary>
+            The enumeration of plan types.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.MLCPlanType">
+            <summary>
+            The enumeration of Multileaf Collimator (MLC) techniques.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.PlanSetupApprovalStatus">
+            <summary>
+            The enumeration of plan approval statuses.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.DoseValuePresentation">
+            <summary>
+            Types of presentation for dose values.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.VolumePresentation">
+            <summary>
+            Types of presentation for volume values.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.PatientOrientation">
+            <summary>
+            The enumeration of patient orientations.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.SeriesModality">
+            <summary>
+            The enumeration of series modalities.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.SetupTechnique">
+            <summary>
+            The enumeration of setup techniques for a beam.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.GantryDirection">
+            <summary>
+            The enumeration of gantry rotation directions.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.BlockType">
+            <summary>
+            A type flag that tells whether a block is an aperture block or a shielding
+            block. An aperture block is used to limit the radiated area while a
+            shielding block is made to protect a sensitive organ.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.BankIndex">
+            <summary>
+            The enumeration of bank indexes for Multileaf Collimators (MLC).
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Version.VersionInfo">
+            <summary>
+            This class is a set of constants that specify build version information.
+            Generated automatically from TpsNetVersion.in - do not edit by hand.
+            The logic is copied from the VFC equivalents in TpsVersion.in.
+            Names and identifiers are kept exactly the same as in the original VFC version
+            to help in maintenance.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.ProfilePoint">
+            <summary>
+            Represents a point of a line profile.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.ProfilePoint.#ctor(VMS.TPS.Common.Model.Types.VVector,System.Double)">
+            <summary>
+            Constructs a ProfilePoint. 
+            </summary>
+            <param name="position">Position of the point.</param>
+            <param name="value">Value of the point.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.ProfilePoint.Position">
+            <summary>
+            The position of the point.
+            </summary>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.ProfilePoint.Value">
+            <summary>
+            The value of the point.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.LineProfile">
+            <summary>
+            Represents values along a line segment.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.LineProfile.#ctor(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.Types.VVector,System.Double[])">
+            <summary>
+            Constructs a LineProfile.
+            </summary>
+            <param name="origin">Origin, i.e. position of first point of the profile.</param>
+            <param name="step">Step length and direction between points on the profile.</param>
+            <param name="data">Array of values of the profile.</param>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.LineProfile.GetEnumerator">
+            <summary>
+            An enumerator for the points in the profile.
+            </summary>
+            <returns>Enumerator for points in the profile.</returns>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.LineProfile.System#Collections#IEnumerable#GetEnumerator">
+            <summary>
+            A non-generic version of the enumerator for the points in the profile.
+            </summary>
+            <returns>Enumerator for points in the profile.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.LineProfile.Item(System.Int32)">
+            <summary>
+            Gets the specified point from the profile.
+            </summary>
+            <param name="index">Zero based index of the point to retrieve.</param>
+            <returns>Point at the given index.</returns>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.LineProfile.Count">
+            <summary>
+            The number of points in the profile.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.ImageProfile">
+            <summary>
+            Represents an image line profile.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.ImageProfile.#ctor(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.Types.VVector,System.Double[],System.String)">
+            <summary>
+            Constructs an ImageProfile.
+            </summary>
+            <param name="origin">Origin, i.e. position of first point of the profile.</param>
+            <param name="step">Step length and direction between points on the profile.</param>
+            <param name="data">Array of values of the profile.</param>
+            <param name="unit">Unit of values in the profile.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.ImageProfile.Unit">
+            <summary>
+            The unit of the points on the image profile.
+            </summary>
+        </member>
+        <member name="T:VMS.TPS.Common.Model.Types.DoseProfile">
+            <summary>
+            Represents a dose profile.
+            </summary>
+        </member>
+        <member name="M:VMS.TPS.Common.Model.Types.DoseProfile.#ctor(VMS.TPS.Common.Model.Types.VVector,VMS.TPS.Common.Model.Types.VVector,System.Double[],VMS.TPS.Common.Model.Types.DoseValue.DoseUnit)">
+            <summary>
+            Constructs a DoseProfile.
+            </summary>
+            <param name="origin">Origin, i.e. position of first point of the profile.</param>
+            <param name="step">Step length and direction between points on the profile.</param>
+            <param name="data">Array of values of the profile.</param>
+            <param name="unit">Unit of values in the profile.</param>
+        </member>
+        <member name="P:VMS.TPS.Common.Model.Types.DoseProfile.Unit">
+            <summary>
+            The unit of the points on this dose profile.
+            </summary>
+        </member>
+    </members>
+</doc>
