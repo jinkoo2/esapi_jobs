@@ -1,0 +1,78 @@
+## Ignore Visual Studio temporary files, build results, and
+## user-specific files.
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# VS Code settings
+.vscode/
+
+# Rider settings
+.idea/
+
+# ReSharper
+_ReSharper*/
+*.DotSettings.user
+
+# JetBrains Rider
+.idea/
+
+# VS for Mac
+*.userprefs
+
+# Auto-generated files
+Generated_Code/
+
+# Backup & crash logs
+*.bak
+*.tmp
+
+# Publish folder
+publish/
+
+# NuGet
+*.nupkg
+*.snupkg
+.nuget/
+packages/
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# MSBuild binary log
+*.binlog
+
+# ASP.NET
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Entity Framework
+Migrations/
+
+# Others
+*.log
+*.tlog
+*.cache
+*.vs/
+
+_*
+_*/

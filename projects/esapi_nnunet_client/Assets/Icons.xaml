@@ -1,0 +1,13 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!-- Icon image sources for toolbar and menu (replacing PackIconMaterial) -->
+    <BitmapImage x:Key="IconPlus" UriSource="pack://application:,,,/esapi_nnunet_client;component/Assets/Icons/plus.png"/>
+    <BitmapImage x:Key="IconMinus" UriSource="pack://application:,,,/esapi_nnunet_client;component/Assets/Icons/minus.png"/>
+    <BitmapImage x:Key="IconContentCopy" UriSource="pack://application:,,,/esapi_nnunet_client;component/Assets/Icons/content_copy.png"/>
+    <BitmapImage x:Key="IconContentSave" UriSource="pack://application:,,,/esapi_nnunet_client;component/Assets/Icons/content_save.png"/>
+    <BitmapImage x:Key="IconFolderOpen" UriSource="pack://application:,,,/esapi_nnunet_client;component/Assets/Icons/folder_open.png"/>
+    <BitmapImage x:Key="IconMenu" UriSource="pack://application:,,,/esapi_nnunet_client;component/Assets/Icons/menu.png"/>
+    <BitmapImage x:Key="IconCheck" UriSource="pack://application:,,,/esapi_nnunet_client;component/Assets/Icons/check.png"/>
+    <BitmapImage x:Key="IconCodeJson" UriSource="pack://application:,,,/esapi_nnunet_client;component/Assets/Icons/code_json.png"/>
+    <BitmapImage x:Key="IconFileDelimited" UriSource="pack://application:,,,/esapi_nnunet_client;component/Assets/Icons/file_delimited.png"/>
+</ResourceDictionary>

@@ -1,0 +1,163 @@
+<UserControl x:Class="nnunet_client.views.DoseLimitCheckerControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    
+             xmlns:ui="clr-namespace:nnunet_client.UI"
+             xmlns:local="clr-namespace:nnunet_client.views"
+             mc:Ignorable="d"    
+             d:DesignHeight="600" d:DesignWidth="850">
+
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../StandardStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <!-- Left sidebar -->
+            <ColumnDefinition Width="*"/>
+            <!-- Right editor section -->
+        </Grid.ColumnDefinitions>
+
+        <!-- LEFT SECTION: Controls Sidebar -->
+        <ScrollViewer Grid.Column="0" VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="16">
+
+                <!-- CONTEXT SELECTION SECTION HEADER -->
+                <TextBlock Text="PLAN CONTEXT" Style="{StaticResource SectionHeaderStyle}"/>
+
+                <!-- Patient Section -->
+                <GroupBox Header="Patient ID">
+                    <ui:AutoCompleteTextBox
+                        ItemsSource="{Binding PatientNameIdList}" 
+                        SelectedItem="{Binding SelectedPatientNameId}"
+                        Height="28"
+                        />
+                </GroupBox>
+
+                <!-- Course Section -->
+                <GroupBox Header="Course">
+                    <ComboBox
+                        ItemsSource="{Binding CourseIdList}"
+                        SelectedItem="{Binding SelectedCourseId}"
+                        Height="28"
+                        />
+                </GroupBox>
+
+                <!-- Plan Section -->
+                <GroupBox Header="Plan">
+                    <ComboBox
+                        ItemsSource="{Binding PlanIdList}"
+                        SelectedItem="{Binding SelectedPlanId}"
+                        Height="28"
+                        />
+                </GroupBox>
+
+                <Separator Margin="0 0 0 16"/>
+
+                <!-- TEMPLATE MANAGEMENT SECTION HEADER -->
+                <TextBlock Text="CONSTRAINTS" Style="{StaticResource SectionHeaderStyle}"/>
+
+                <!-- Select Dose Limit Template -->
+                <GroupBox Header="Dose Constraint Sets" Padding="10">
+                    <StackPanel Orientation="Vertical">
+
+                        <ListView
+                            ItemsSource="{Binding DoseLimitListEditorViewModelList}"
+                            SelectedItem="{Binding SelectedDoseLimitListEditorViewModel}"
+                            DisplayMemberPath="Title"
+                            Margin="0 0 0 10"
+                            MinHeight="150"
+                            BorderBrush="#D0D0D0"
+                            BorderThickness="1"
+                            >
+
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="Padding" Value="10, 5" />
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            
+                            
+                        </ListView>
+
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button ToolTip="Add"
+                                    Grid.Column="0"
+                                    Command="{Binding AddDoseLimitSetCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                        <Image Source="{StaticResource IconPlus}" Margin="3" Height="12" Width="12" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    </StackPanel>
+                            </Button>
+
+                            <Button ToolTip="Remove"
+                                    Grid.Column="1"
+                                    Command="{Binding RemoveDoseLimitSetCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{StaticResource IconMinus}" Margin="3" Height="12" Width="12" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                </StackPanel>
+                            </Button>
+
+                            <Button ToolTip="Duplicate"
+                                    Grid.Column="2"
+                                    Command="{Binding DuplicateDoseLimitSetCommand}">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="{StaticResource IconContentCopy}" Margin="3" Height="12" Width="12" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                </StackPanel>
+                            </Button>
+                            
+                            <Button ToolTip="Save List"
+                                    Grid.Column="3"
+                                    Command="{Binding SaveDoseLimitListEditorViewModelListCommand}">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                        <Image Source="{StaticResource IconContentSave}" Margin="3" Height="12" Width="12" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                    </StackPanel>
+                            </Button>
+                            
+                        </Grid>
+                        
+                        <Button  
+                            ToolTip="Import from Template List..."
+                            Command="{Binding ImportTemplateCommand}">
+                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                <Image Source="{StaticResource IconFolderOpen}" Margin="3" Height="12" Width="12" Stretch="Uniform" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                <TextBlock VerticalAlignment="Center" Margin="3">Load from Template List...</TextBlock>
+                            </StackPanel>
+                        </Button>
+                        
+                    </StackPanel>
+                </GroupBox>
+
+               
+
+               
+            </StackPanel>
+        </ScrollViewer>
+
+        <!-- RIGHT SECTION: Template Editor -->
+        <!-- CornerRadius is correctly applied to this Border element -->
+        <Border Grid.Column="1" Margin="16" 
+                Background="White" 
+                BorderBrush="#D0D0D0" 
+                BorderThickness="1" 
+                CornerRadius="6">
+            <local:DoseLimitListEditorControl    
+                DataContext="{Binding SelectedDoseLimitListEditorViewModel}"
+                Margin="15"/>
+        </Border>
+
+    </Grid>
+</UserControl>
