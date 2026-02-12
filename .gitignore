@@ -1,6 +1,9 @@
 # Underscore-prefixed files and folders
 _*/
 
+# Sensitive config files (use config.sample.json as template)
+config.json
+
 # C# / Visual Studio
 bin/
 obj/
