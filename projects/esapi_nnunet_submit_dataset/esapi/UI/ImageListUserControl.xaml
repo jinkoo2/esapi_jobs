@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="esapi.UI.ImageListUserControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid>
+        <DataGrid x:Name="ImageDataGrid"
+                  AutoGenerateColumns="False"
+                  SelectionMode="Single"
+                  SelectionChanged="ImageDataGrid_SelectionChanged"
+                  IsReadOnly="True"
+                  Margin="5"                 
+                  >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Created" Binding="{Binding CreationDateTime}" />
+                <DataGridTextColumn Header="Type" Binding="{Binding ImageType}" />
+                <DataGridTextColumn Header="Modality" Binding="{Binding Modality}" />
+                <DataGridTextColumn Header="Orientation" Binding="{Binding ImagingOrientation}" />
+                <DataGridTextColumn Header="Size" Binding="{Binding Size}" />
+                <DataGridTextColumn Header="Resolution" Binding="{Binding Resolution}" />
+                <DataGridTextColumn Header="Comment" Binding="{Binding Comment}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

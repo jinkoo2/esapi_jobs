@@ -1,83 +1,61 @@
-# CLAUDE.md
+# esapi_nnunet_client
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
-## Project Overview
-
-WPF desktop application (.NET Framework 4.7.2, x64) that integrates with **Varian Eclipse Scripting API (ESAPI) v16.1** for medical image segmentation and treatment planning. Provides auto-contouring via nnU-Net server, dose limit checking, and job submission capabilities.
+WPF desktop application (.NET Framework 4.7.2, x64) that integrates with Varian ESAPI v16.1 for medical image segmentation and treatment planning.
 
 **Namespace**: `nnunet_client`
 
-## Build Commands
+## Build
 
-```batch
-# Build (defaults to Debug x64)
-build.bat
-
-# Build with specific configuration
-build.bat Debug
-build.bat Release
+```
+/esapi build esapi_nnunet_client [debug|release]
 ```
 
-The build script auto-detects MSBuild from Visual Studio and builds dependencies first:
-1. `../esapi/esapi.csproj` (shared ESAPI wrapper library)
-2. `../MahApps.Metro-develop-net48/` (UI framework, local source)
-3. Main project (`esapi_nnunet_client.csproj`)
+NuGet packages are restored to the project-local `packages/` folder. Shared dependencies (Newtonsoft.Json, SimpleITK) are in `../../packages/`.
 
 Post-build copies SimpleITK native DLLs and JSON config files to output.
 
-**Debug output**: `\\VarianFS\VA_DATA$\ProgramData\Vision\PublishedScripts\bladder_art\bin\`
-**Release output**: `bin\release\esapi_nnunet_client.exe`
+## Architecture (MVVM)
 
-## Architecture
-
-### MVVM Pattern
-
-- **ViewModels** (`viewmodels/`): Inherit from `BaseViewModel` which provides `SetProperty<T>()` for change notification and auto-save with 3-second debounce. Commands use `RelayCommand`/`RelayCommand2`.
-- **Views** (`views/`): XAML UserControls. Value converters in `views/Converters.cs`.
+- **ViewModels** (`viewmodels/`): Inherit `BaseViewModel` with `SetProperty<T>()` for change notification and auto-save with 3-second debounce. Commands use `RelayCommand`/`RelayCommand2`.
+- **Views** (`views/`): XAML UserControls. Converters in `views/Converters.cs`.
 - **Models** (`models/`): Domain objects (DoseLimit, SubmitJob, SegmentationTemplate, etc.).
 - **Windows** (`windows/`): Top-level WPF windows launched from MainWindow.
 
-### Entry Point & Global State
+## Entry Point & Global State
 
-- `main.cs`: `Program.Main()` creates `VMSApplication` (ESAPI connection), sets up WPF exception handler, launches `MainWindow`.
-- `global.cs`: Static class holding `VMSApplication`, `VMSPatient`, and `AppConfig`. Config loaded from `config.json` in execution folder via `load_config()`.
+- `main.cs`: `Program.Main()` creates `VMSApplication`, sets up WPF exception handler, launches `MainWindow`.
+- `global.cs`: Static class holding `VMSApplication`, `VMSPatient`, and `AppConfig`. Config loaded from `config.json` via `load_config()`.
 
-### Key Modules
+## Key Modules
 
 | Module | Window | ViewModel | Purpose |
 |--------|--------|-----------|---------|
 | Auto-Contour | `AutoContourWindow` | `AutoContourViewModel` | Submit images to nnU-Net server for segmentation |
-| Bladder ART | `BladderART` | `BladderAutoPlanViewModel` | Automated treatment planning (PTV creation, beam setup) |
+| Bladder ART | `BladderART` | `BladderAutoPlanViewModel` | Automated treatment planning |
 | Dose Limits | `DoseLimitChecker` | `DoseLimitCheckerViewModel` | Check dose constraints against structure sets |
-| Submit Jobs | `SubmitImageAndLabelsWindow` | `SubmitImageAndLabelsViewModel` | Queue-based image+label submission to nnU-Net |
+| Submit Jobs | `SubmitImageAndLabelsWindow` | `SubmitImageAndLabelsViewModel` | Queue-based image+label submission |
 
-### Service Layer
+## Service Layer
 
 - `nnUNetServiceClient.cs`: HTTP REST client for nnU-Net server v2 API. Auth via email+token from config.
-- `services/JobQueueService.cs`: File-based job queue storing JSON in `{app_data_dir}/submit_queue/`. Manages job lifecycle (Pending → Processing → Completed/Failed).
-- `SubmitJobWorker.cs` / `SubmitJobWorkerMain.cs`: Background workers for processing queued jobs.
+- `services/JobQueueService.cs`: File-based job queue storing JSON in `{app_data_dir}/submit_queue/`.
+- `SubmitJobWorker.cs`: Background worker for processing queued jobs.
 
-### Configuration
+## Inlined Dependencies
 
-`AppConfig.cs` defines config shape loaded from `config.json`:
-- `nnunet_server_url`, `nnunet_server_auth_email`, `nnunet_server_auth_token` — server connection
-- `data_root_secure` — secure data path
-- `app_data_dir` — local app data directory
-- User identity fields for job attribution
+- `esapi/` -- Shared ESAPI utility library (image export, structure helpers, SimpleITK wrappers)
+- `variandb/` -- Varian database query utilities
+
+## Configuration
+
+`config.json` (copied to output on build):
+- `nnunet_server_url`, `nnunet_server_auth_email`, `nnunet_server_auth_token`
+- `data_root_secure`, `app_data_dir`
 
 ## Key Dependencies
 
-- **Varian ESAPI 16.1** — `C:\Program Files (x86)\Varian\RTM\16.1\esapi\API\`
-- **MahApps.Metro** — WPF UI framework (built from local source)
-- **SimpleITK** — Medical image processing (native x64 DLLs)
-- **Newtonsoft.Json** — JSON serialization
-- **MaterialDesignThemes** — UI styling
-- **Fleck** — WebSocket support
-
-## Constraints
-
-- x64 only (SimpleITK requirement)
-- .NET Framework 4.7.2 (ESAPI compatibility — cannot migrate to .NET Core)
-- Windows only (WPF + ESAPI)
-- No test framework configured; `DoseLimitEvaluator.RunTests()` is the only test-like method
+- Varian ESAPI 16.1
+- SimpleITK 1.2.4 (native x64 DLLs)
+- Newtonsoft.Json
+- MaterialDesignThemes, ControlzEx, Extended.Wpf.Toolkit
+- Fleck (WebSocket)
