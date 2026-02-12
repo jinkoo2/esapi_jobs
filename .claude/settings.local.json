@@ -30,7 +30,10 @@
       "Bash(git commit:*)",
       "Bash(git branch:*)",
       "Bash(git remote add:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v4.0.30319\\\\MSBuild.exe\" hello_world.csproj //p:Configuration=Debug)",
+      "Bash(\"C:\\\\Windows\\\\Microsoft.NET\\\\Framework64\\\\v4.0.30319\\\\MSBuild.exe\" hello_world.csproj //p:Configuration=Debug //p:OutputPath=U:temp)",
+      "Bash(\"C:/Users/jkim20/Documents/Eclipse Scripting API/Projects/projects/esapi_job_processor/bin/debug/esapi_job_processor.exe\")"
     ]
   }
 }

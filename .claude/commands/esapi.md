@@ -6,13 +6,14 @@ ESAPI project management tool.
 /esapi create <project_type> '<project_name>'
 /esapi build '<project_name>' <configuration>
 /esapi run '<project_name>' <configuration>
+/esapi patient list <N>
 ```
 
 ## Arguments
 
 The user will provide arguments after `/esapi` in the format shown above.
 
-Parse `$ARGUMENTS` to determine which subcommand is being used (`create`, `build`, or `run`), then follow the corresponding instructions below.
+Parse `$ARGUMENTS` to determine which subcommand is being used (`create`, `build`, `run`, or `patient`), then follow the corresponding instructions below.
 
 ---
 
@@ -125,7 +126,7 @@ When this command is invoked, follow these steps exactly:
 
 2. **Verify the executable exists**:
    - Check that `./projects/<project_name>/bin/<configuration>/<project_name>.exe` exists
-   - If not found, tell the user the executable does not exist and suggest running `/esapi build <project_name> <configuration>` first
+   - If not found, try building the project by invoking: `/esapi build <project_name> <configuration>` 
 
 3. **Run the executable**:
    - Use the Bash tool to execute:
@@ -134,3 +135,44 @@ When this command is invoked, follow these steps exactly:
 4. **Report the result**:
    - Show the program's output (stdout and stderr) to the user
    - If the program exited with a non-zero exit code, report that as well
+
+---
+
+## Subcommand: `patient list`
+
+### Arguments
+
+- `N`: The number of patients to list (integer). If not provided, default to `10`.
+
+### Script Template
+
+The script template is located at `./scripts/patient_list.cs`. This script uses placeholders that must be replaced before execution.
+
+### Instructions
+
+When this command is invoked, follow these steps exactly:
+
+1. **Parse the arguments** from `$ARGUMENTS`:
+   - The format is `patient list <N>`
+   - Extract `N` (the number of patients). If not provided, default to `10`.
+
+2. **Read the script template**:
+   - Read the file `./scripts/patient_list.cs`
+
+3. **Create a temporary job**:
+   - Generate a random job folder name (e.g., `job_<14_random_digits>`) using Python
+   - Create the folder under `./_data/jobs/<job_folder>/`
+   - Copy the script template to `./_data/jobs/<job_folder>/job.cs` with these replacements:
+     - Replace `__MAX_COUNT__` with the value of `N`
+     - Replace `__OUTPUT_PATH__` with the absolute path to `./_data/jobs/<job_folder>/patient-summary-list.json` (use double backslashes `\\` for the path in C# string)
+   - Create `./_data/jobs/<job_folder>/job.json` with status `"pending"` (follow the same JSON format as other jobs)
+
+4. **Run the job processor**:
+   - Verify that `./projects/esapi_job_processor/bin/debug/esapi_job_processor.exe` exists
+   - If not found, tell the user to build it first with `/esapi build esapi_job_processor debug`
+   - Run the executable using the Bash tool:
+     `"<full_path>/projects/esapi_job_processor/bin/debug/esapi_job_processor.exe"`
+
+5. **Report the result**:
+   - Show the program's console output to the user
+   - If successful, tell the user the JSON file was saved and show the path to `patient-summary-list.json`
