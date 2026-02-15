@@ -44,7 +44,6 @@
             <Button Content="Auto Contour" Click="AutoContourButton_Click"/>
             <Button Content="Dose Limit Checker" Click="DoseLimitCheckerButton_Click"/>
             <Button Content="Dose Limit Editor" Click="DoseLimitEditorButton_Click"/>
-            <Button Content="Submit Image and Labels" Click="SubmitImageAndLabelsButton_Click"/>
             <Button Content="Bladder ART" Click="BladderARTButton_Click"/>
         </StackPanel>
     </Grid>

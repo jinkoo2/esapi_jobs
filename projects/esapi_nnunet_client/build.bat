@@ -7,6 +7,7 @@ setlocal enabledelayedexpansion
 REM Set project directory
 set "PROJECT_DIR=%~dp0"
 set "PROJECT_FILE=%PROJECT_DIR%esapi_nnunet_client.csproj"
+set "PLUGIN_PROJECT_FILE=%PROJECT_DIR%esapi_nnunet_client_plugin.csproj"
 
 REM Default to Debug configuration if not specified
 REM Normalize configuration name (case-insensitive)
@@ -117,21 +118,36 @@ REM Skip NuGet package restore since we're using local DLLs
 if errorlevel 1 goto :build_failed
 echo.
 echo ========================================
-echo Build succeeded!
-REM Output path - Debug uses network path, Release uses local bin\release
-if /i "%CONFIG%"=="Debug" (
-    echo Output: Network path (as configured in project)
-    echo Local copy may be in: %PROJECT_DIR%bin\debug\esapi_nnunet_client.exe
-) else (
-    echo Output: %PROJECT_DIR%bin\release\esapi_nnunet_client.exe
-)
+echo Standalone build succeeded!
+echo Output: %PROJECT_DIR%..\..\build\esapi_nnunet_client\esapi_nnunet_client.exe
+echo ========================================
+
+echo.
+echo Building plugin project (esapi_nnunet_client_plugin)...
+echo.
+
+REM Build the plugin project
+"%MSBUILD_PATH%" "%PLUGIN_PROJECT_FILE%" /p:Configuration=%CONFIG% /p:Platform=%PLATFORM% /p:RestorePackages=false /p:SkipRestorePackages=true /p:DisableImplicitNuGetFallbackFolder=true /p:ResolveNuGetPackages=false /t:Build /v:minimal
+
+if errorlevel 1 goto :plugin_build_failed
+echo.
+echo ========================================
+echo Plugin build succeeded!
+echo Output: %PROJECT_DIR%..\..\build\esapi_nnunet_client\esapi_nnunet_client.esapi.dll
 echo ========================================
 exit /b 0
 
 :build_failed
 echo.
 echo ========================================
-echo Build failed!
+echo Standalone build failed!
+echo ========================================
+exit /b 1
+
+:plugin_build_failed
+echo.
+echo ========================================
+echo Plugin build failed!
 echo ========================================
 exit /b 1
 

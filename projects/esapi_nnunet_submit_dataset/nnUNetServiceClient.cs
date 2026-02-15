@@ -62,7 +62,8 @@ public class nnUNetServicClient
 
     public async Task DownloadImageAndLabelAsync(string datasetId, string imagesFor, int num, string outDir)
     {
-        var url = string.Format("/datasets/get_image_and_labels?dataset_id={0}&images_for={1}&num={2}", datasetId, imagesFor, num);
+        string imagesForNorm = (imagesFor ?? "").ToLowerInvariant();
+        var url = string.Format("/datasets/get_image_and_labels?dataset_id={0}&images_for={1}&num={2}", datasetId, imagesForNorm, num);
         var meta = await GetJsonAsync(url);
 
         Directory.CreateDirectory(outDir);
@@ -81,11 +82,12 @@ public class nnUNetServicClient
 
     public async Task<dynamic> PostImageAndLabelsAsync(string datasetId, string imagesFor, string imagePath, string labelsPath)
     {
+        string imagesForNorm = (imagesFor ?? "").ToLowerInvariant();
         string url = baseUrl + "/datasets/add_image_and_labels";
         using (var form = new MultipartFormDataContent())
         {
             form.Add(new StringContent(datasetId), "dataset_id");
-            form.Add(new StringContent(imagesFor), "images_for");
+            form.Add(new StringContent(imagesForNorm), "images_for");
             form.Add(new StreamContent(File.OpenRead(imagePath)), "base_image", Path.GetFileName(imagePath));
             form.Add(new StreamContent(File.OpenRead(labelsPath)), "labels", Path.GetFileName(labelsPath));
             
@@ -96,11 +98,12 @@ public class nnUNetServicClient
 
     public async Task<dynamic> UpdateImageAndLabelsAsync(string datasetId, string imagesFor, int num, string imagePath, string labelsPath)
     {
+        string imagesForNorm = (imagesFor ?? "").ToLowerInvariant();
         var url = baseUrl + "/datasets/update_image_and_labels";
         using (var form = new MultipartFormDataContent())
         {
             form.Add(new StringContent(datasetId), "dataset_id");
-            form.Add(new StringContent(imagesFor), "images_for");
+            form.Add(new StringContent(imagesForNorm), "images_for");
             form.Add(new StringContent(num.ToString()), "num");
             form.Add(new StreamContent(File.OpenRead(imagePath)), "base_image", Path.GetFileName(imagePath));
             form.Add(new StreamContent(File.OpenRead(labelsPath)), "labels", Path.GetFileName(labelsPath));
@@ -113,7 +116,8 @@ public class nnUNetServicClient
 
     public async Task<dynamic> DeleteImageAndLabelsAsync(string datasetId, string imagesFor, int num)
     {
-        string url = string.Format("{0}/datasets/delete_image_and_labels?dataset_id={1}&images_for={2}&num={3}", baseUrl, datasetId, imagesFor, num);
+        string imagesForNorm = (imagesFor ?? "").ToLowerInvariant();
+        string url = string.Format("{0}/datasets/delete_image_and_labels?dataset_id={1}&images_for={2}&num={3}", baseUrl, datasetId, imagesForNorm, num);
         var response = await client.DeleteAsync(url);
         return await ParseResponseAsync(response);
     }
@@ -189,10 +193,11 @@ public class nnUNetServicClient
 
     private async Task<dynamic> PostMultipartAsync(string path, string datasetId, string imagesFor, string imagePath, string labelsPath)
     {
+        string imagesForNorm = (imagesFor ?? "").ToLowerInvariant();
         using (var form = new MultipartFormDataContent())
         {
             form.Add(new StringContent(datasetId), "dataset_id");
-            form.Add(new StringContent(imagesFor), "images_for");
+            form.Add(new StringContent(imagesForNorm), "images_for");
             // StreamContent takes ownership of the streams and will dispose them when the form is disposed
             form.Add(new StreamContent(File.OpenRead(imagePath)), "base_image", Path.GetFileName(imagePath));
             form.Add(new StreamContent(File.OpenRead(labelsPath)), "labels", Path.GetFileName(labelsPath));

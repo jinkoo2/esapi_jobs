@@ -10,7 +10,6 @@ using Newtonsoft.Json;
 using nnunet;
 using nnunet_client.models;
 using nnunet_client.services;
-using static esapi.esapi;
 using itk.simple;
 using VMS.TPS.Common.Model.Types;
 using VMSStructure = VMS.TPS.Common.Model.API.Structure;
@@ -91,6 +90,7 @@ namespace nnunet_client.viewmodels
             LabelMappings = new ObservableCollection<LabelStructureMapping>();
 
             LoadDatasetsCommand = new RelayCommand(async () => await LoadDatasetsAsync());
+            FindStructuresCommand = new RelayCommand(() => FindStructures());
 
             // Load datasets on initialization
             LoadDatasetsAsync();
@@ -177,6 +177,7 @@ namespace nnunet_client.viewmodels
         }
 
         public ICommand LoadDatasetsCommand { get; }
+        public ICommand FindStructuresCommand { get; }
         private RelayCommand _submitCommand;
         public ICommand SubmitCommand
         {
@@ -289,6 +290,32 @@ namespace nnunet_client.viewmodels
             }
             
             RaiseSubmitCommandCanExecuteChanged();
+        }
+
+        private void FindStructures()
+        {
+            if (LabelMappings == null || LabelMappings.Count == 0 ||
+                AvailableStructures == null || AvailableStructures.Count == 0)
+            {
+                helper.log("FindStructures: No label mappings or no available structures.");
+                return;
+            }
+
+            int matchCount = 0;
+            foreach (var mapping in LabelMappings)
+            {
+                // Exact case-insensitive match first
+                var match = AvailableStructures.FirstOrDefault(
+                    s => string.Equals(s.Id, mapping.LabelName, StringComparison.OrdinalIgnoreCase));
+
+                if (match != null)
+                {
+                    mapping.SelectedStructure = match;
+                    matchCount++;
+                }
+            }
+
+            helper.log($"FindStructures: Matched {matchCount}/{LabelMappings.Count} labels to structures.");
         }
 
         private void RaiseSubmitCommandCanExecuteChanged()

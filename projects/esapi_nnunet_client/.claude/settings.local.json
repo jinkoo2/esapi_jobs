@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(build.bat)",
+      "Bash(cmd /c \"cd /d \"\"U:\\\\ESAPI\\\\Eclipse Scripting API\\\\Projects\\\\esapi_nnunet_client\"\" && build.bat\")"
+    ]
+  }
+}

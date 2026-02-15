@@ -21,7 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\debug\</OutputPath>
+    <OutputPath>..\..\build\$(AssemblyName)\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,7 +30,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\release</OutputPath>
+    <OutputPath>..\..\build\$(AssemblyName)\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -144,11 +144,6 @@
     <Compile Include="windows\BladderART.xaml.cs">
       <DependentUpon>windows\BladderART.xaml</DependentUpon>
     </Compile>
-    <Compile Include="windows\SubmitImageAndLabelsWindow.xaml.cs">
-      <DependentUpon>windows\SubmitImageAndLabelsWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SubmitImageAndLabelsWindowViewModel.cs" />
-    <Compile Include="SubmitJobWorker.cs" />
     <Compile Include="viewmodels\AutoContourViewModel.cs" />
     <Compile Include="viewmodels\BaseViewModel.cs" />
     <Compile Include="viewmodels\BladderAutoPlanViewModel.cs" />
@@ -159,16 +154,10 @@
     <Compile Include="viewmodels\RelayCommand2.cs" />
     <Compile Include="viewmodels\SegmentationTemplateEditorViewModel.cs" />
     <Compile Include="viewmodels\StepNevigatorViewModel.cs" />
-    <Compile Include="viewmodels\SubmitImageAndLabelsViewModel.cs" />
-    <Compile Include="models\SubmitJob.cs" />
-    <Compile Include="services\JobQueueService.cs" />
     <Compile Include="views\AutoContourControl.xaml.cs">
       <DependentUpon>AutoContourControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="views\Converters.cs" />
-    <Compile Include="views\SubmitImageAndLabels.xaml.cs">
-      <DependentUpon>SubmitImageAndLabels.xaml</DependentUpon>
-    </Compile>
     <Compile Include="views\BladderAutoPlanControl.xaml.cs">
       <DependentUpon>BladderAutoPlanControl.xaml</DependentUpon>
     </Compile>
@@ -283,10 +272,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="windows\SubmitImageAndLabelsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="windows\DoseLimitChecker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -352,10 +337,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="views\StepNavigator.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="views\SubmitImageAndLabels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

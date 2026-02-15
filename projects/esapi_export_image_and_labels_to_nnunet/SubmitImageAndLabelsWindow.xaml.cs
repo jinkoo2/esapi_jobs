@@ -1,5 +1,3 @@
-using esapi.UI;
-using esapi.ViewModel;
 using nnunet_client.views;
 using System;
 using System.Collections.Generic;
@@ -40,11 +38,25 @@ namespace nnunet_client
             //helper.Logger = Logger;
 
             // select a patient control
-            PatientSearchBox.ItemsSource = new ObservableCollection<string>(global.vmsApplication.PatientSummaries
-                .Select(p => $"{p.LastName}, {p.FirstName}, {p.Id}"));
-            PatientSearchBox.SelectedItemChanged += PatientSearchBox_SelectedItemChanged;
+            if (global.isPluginMode)
+            {
+                PatientSelectionGroupBox.Visibility = Visibility.Collapsed;
+                _viewModel.Patient = global.vmsPatient;
 
-            helper.log("Now...select a patient...");
+                // auto-select the active structure set from Eclipse
+                if (global.scriptContext?.StructureSet != null)
+                {
+                    _viewModel.SelectedStructureSet = global.scriptContext.StructureSet;
+                }
+            }
+            else
+            {
+                PatientSearchBox.ItemsSource = new ObservableCollection<string>(global.vmsApplication.PatientSummaries
+                    .Select(p => $"{p.LastName}, {p.FirstName}, {p.Id}"));
+                PatientSearchBox.SelectedItemChanged += PatientSearchBox_SelectedItemChanged;
+
+                helper.log("Now...select a patient...");
+            }
         }
 
         private void PatientSearchBox_SelectedItemChanged(object s, string selectedString)
@@ -73,7 +85,7 @@ namespace nnunet_client
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            if (global.vmsPatient != null)
+            if (!global.isPluginMode && global.vmsPatient != null)
             {
                 if(helper.show_yes_no_msg_box("Do you want to save any changes you made?"))
                 {

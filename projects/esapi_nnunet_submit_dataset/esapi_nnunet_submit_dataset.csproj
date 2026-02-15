@@ -33,7 +33,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\debug\</OutputPath>
+    <OutputPath>..\..\build\$(AssemblyName)\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -42,7 +42,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\release</OutputPath>
+    <OutputPath>..\..\build\$(AssemblyName)\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -98,6 +98,7 @@
     <Compile Include="nnUNetServiceClient.cs" />
     <Compile Include="models\SubmitJob.cs" />
     <Compile Include="services\JobQueueService.cs" />
+    <Compile Include="FailureNotifyMail.cs" />
     <Compile Include="SubmitJobWorker.cs" />
     <Compile Include="SubmitJobWorkerMain.cs" />
   </ItemGroup>

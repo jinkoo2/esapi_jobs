@@ -8,5 +8,14 @@
   "app_data_dir": "C:\\data\\esapi_nnunet_client\\_data",
   "nnunet_server_url": "https://your-nnunet-server.example.com/api/v2",
   "nnunet_server_auth_email": "your.email@example.com",
-  "nnunet_server_auth_token": "your-jwt-token-here"
+  "nnunet_server_auth_token": "your-jwt-token-here",
+  "failure_notify_email_to": "admin@example.com",
+  "success_notify_email_to": "admin@example.com",
+  "smtp_host": "smtp.office365.com",
+  "smtp_port": 587,
+  "smtp_use_ssl": true,
+  "smtp_user": "",
+  "smtp_password": "",
+  "smtp_from_address": "noreply@example.com",
+  "smtp_from_display_name": "nnUNet Submit Dataset"
 }

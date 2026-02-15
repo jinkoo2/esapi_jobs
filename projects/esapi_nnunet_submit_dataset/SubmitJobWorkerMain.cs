@@ -48,6 +48,30 @@ namespace nnunet_client
                 }
             };
 
+            // Test failure-notification email without starting ESAPI (config must be next to exe)
+            if (args.Length > 0 && (args[0] == "--test-email" || args[0] == "/test-email"))
+            {
+                try
+                {
+                    string configPath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? ".", "config.json");
+                    Console.WriteLine($"Loading config from: {configPath}");
+                    global.appConfig = AppConfig.LoadConfig(configPath);
+                    FailureNotifyMail.SendIfConfigured(
+                        "(test)",
+                        "This is a test. If you received this, failure notification is working.",
+                        "(test)",
+                        "(test)"
+                    );
+                    Console.WriteLine("Test email sent. Check the inbox for failure_notify_email_to.");
+                }
+                catch (Exception ex)
+                {
+                    Console.Error.WriteLine("Test email failed: " + ex.Message);
+                    Environment.Exit(1);
+                }
+                Environment.Exit(0);
+            }
+
             try
             {
                 using (VMSApplication app = VMSApplication.CreateApplication())

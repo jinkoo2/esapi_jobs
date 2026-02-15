@@ -93,7 +93,6 @@ namespace nnunet_client
                 try
                 {
                     ProcessJob(job);
-                    _jobQueueService.UpdateJobStatus(job.JobId, "Completed");
                     helper.log($"Job {job.JobId} completed successfully.");
                 }
                 catch (Exception ex)
@@ -106,6 +105,7 @@ namespace nnunet_client
                     }
                     helper.log($"Stack trace: {ex.StackTrace}");
                     _jobQueueService.UpdateJobStatus(job.JobId, "Failed", ex.Message);
+                    FailureNotifyMail.SendIfConfigured(job.JobId, ex.Message, job.DatasetId, job.ImagesFor);
                 }
             }
             catch (Exception ex)
@@ -216,6 +216,8 @@ namespace nnunet_client
                             await _client.PostImageAndLabelsAsync(job.DatasetId, job.ImagesFor, baseImagePath, labelsPath).ConfigureAwait(false)
                         ).GetAwaiter().GetResult();
                         helper.log($"Submission successful: {response}");
+                        _jobQueueService.UpdateJobStatus(job.JobId, "Completed");
+                        FailureNotifyMail.SendSuccessIfConfigured(job.JobId, job.DatasetId, job.ImagesFor);
                     }
                     catch (TaskCanceledException ex)
                     {

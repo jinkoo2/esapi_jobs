@@ -25,6 +25,17 @@ namespace nnunet_client
         public string nnunet_server_auth_email { get; set; }
         public string nnunet_server_auth_token { get; set; }
 
+        // Notification email: failure and success recipients
+        public string failure_notify_email_to { get; set; }
+        public string success_notify_email_to { get; set; }
+        // SMTP settings (shared for failure and success notifications)
+        public string smtp_host { get; set; }
+        public int smtp_port { get; set; } = 587;
+        public bool smtp_use_ssl { get; set; } = true;
+        public string smtp_user { get; set; }
+        public string smtp_password { get; set; }
+        public string smtp_from_address { get; set; }
+        public string smtp_from_display_name { get; set; }
 
         /// <summary>
         /// Loads and deserializes the configuration from the specified JSON file path.

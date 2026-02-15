@@ -1452,7 +1452,7 @@ namespace nnunet_client
 
             if (!lmc_result.Success)
             {
-                global.vmsApplication.ClosePatient();
+                if (!global.isPluginMode) global.vmsApplication.ClosePatient();
                 _err("LMC Calculation Failed");
             }
 

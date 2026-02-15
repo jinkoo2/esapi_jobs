@@ -48,12 +48,6 @@ namespace nnunet_client
             window.Show();
         }
 
-        private void SubmitImageAndLabelsButton_Click(object sender, RoutedEventArgs e)
-        {
-            var window = new SubmitImageAndLabelsWindow(_esapiApp);
-            window.Show();
-        }
-
         private void BladderARTButton_Click(object sender, RoutedEventArgs e)
         {
             var window = new BladderART(_esapiApp);
